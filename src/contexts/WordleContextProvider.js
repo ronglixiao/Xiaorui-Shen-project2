@@ -42,12 +42,12 @@ function WordleContextProvider({ children }) {
   const [attempts, setAttempts] = useState(0);
   // set the limit of attempts
   const [attemptsLimit, setAttemptsLimit] = useState(0);
-  // TODO: set the history of words user guessed
   // set the history of words user guessed
   const [guessHistory, setGuessHistory] = useState([]);
-  // TODO: set the game over state
   // set the game over state
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const [isShowedAnswer, setIsShowedAnswer] = useState(false);
 
   const handleDifficultyState = (difficulty) => {
     if (difficulty === "normal") {
@@ -91,6 +91,8 @@ function WordleContextProvider({ children }) {
     setGuessHistory,
     setIsGameOver,
     isGameOver,
+    isShowedAnswer,
+    setIsShowedAnswer,
   };
 
   return (

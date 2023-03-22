@@ -31,6 +31,8 @@ function GamePage() {
     setGuessHistory,
     isGameOver,
     setIsGameOver,
+    isShowedAnswer,
+    setIsShowedAnswer,
   } = useContext(WordleContext);
 
   useEffect(() => {
@@ -174,6 +176,10 @@ function GamePage() {
     setGuessHistory([]);
   };
 
+  const handleIsShowedAnswer = () => {
+    setIsShowedAnswer(!isShowedAnswer);
+  };
+
   // TODO: refactor this
   return (
     <>
@@ -215,6 +221,9 @@ function GamePage() {
             <Link to="/">
               <Button variant="outlined">Go Home</Button>
             </Link>
+            <Button variant="outlined" onClick={() => handleIsShowedAnswer()}>
+              Show Answer
+            </Button>
           </Stack>
         </Box>
       </Wrapper>
