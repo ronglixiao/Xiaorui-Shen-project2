@@ -83,6 +83,10 @@ function GamePage() {
     <Box key={index}>{guess()}</Box>
   ));
 
+  // if the letter is in the correct position, the color is green
+  // if the letter includes in the word, but in the wrong position, the color is yellow, and if there are more than one such letter, just mark the first one, and the rest are grey
+  // if the letter is not in the word, the color is grey
+
   const letterEelements = (guessedWord, word) => {
     const letters = guessedWord.split("");
 
@@ -93,9 +97,10 @@ function GamePage() {
     return (
       <Box display="flex">
         {letters.map((letter, index) => {
+          const firstIndex = guessedWord.indexOf(letter);
           const color = indices.includes(index)
             ? "#6aa964" // correct letter in the correct position
-            : word.includes(letter)
+            : word.includes(letter) && firstIndex === index
             ? "#c9b458" // correct letter in the wrong position
             : "#787c7e"; // wrong letter
 

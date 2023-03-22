@@ -15,6 +15,7 @@ function WordleContextProvider({ children }) {
     "button",
     "candle",
     "carpet",
+    "fellow",
   ];
 
   // hard words  = 7 letters, 5 attempts
