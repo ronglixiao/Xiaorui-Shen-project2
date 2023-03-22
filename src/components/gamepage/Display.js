@@ -40,10 +40,10 @@ function Display({ toDisplay }) {
           <p>Difficulty:</p>
           <h3>{toDisplay.difficulty}</h3>
         </DisplayCol>
-        {/* <DisplayCol>
+        <DisplayCol>
           <p>Word:</p>
           <h3>{word}</h3>
-        </DisplayCol> */}
+        </DisplayCol>
         <DisplayCol>
           <p>Left attemps:</p>
           <h3>{attemptsLimit - attempts}</h3>

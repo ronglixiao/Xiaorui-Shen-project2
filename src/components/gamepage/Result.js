@@ -22,6 +22,8 @@ function Result({ toDisplay }) {
   const leftAttempts = attemptsLimit - attempts;
 
   const onPlayAgain = () => {
+    console.log("GameState:" + isGameOver);
+    console.log("Play again...");
     handleWord(difficultyState);
     setAttempts(0);
     setInputValue("");
@@ -31,7 +33,8 @@ function Result({ toDisplay }) {
     setGuessHistory([]);
   };
 
-  if (leftAttempts === 0 && word !== guessedWord) {
+  if (leftAttempts === 0 && word !== guessedWord && !isGameOver) {
+    console.log("Guess lose");
     setIsGameOver(true);
     return (
       <ResultWrapper>
@@ -48,7 +51,14 @@ function Result({ toDisplay }) {
     );
   }
 
-  if (guessedWord === word) {
+  // guessWord and word should not be empty
+  if (
+    word === guessedWord &&
+    word !== "" &&
+    guessedWord !== "" &&
+    !isGameOver
+  ) {
+    console.log("Guess win");
     setIsGameOver(true);
     return (
       <ResultWrapper>

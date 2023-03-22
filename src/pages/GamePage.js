@@ -34,14 +34,28 @@ function GamePage() {
   } = useContext(WordleContext);
 
   useEffect(() => {
+    handleDifficultyState(difficulty);
+    handleWord(difficultyState);
+    setGuessedWord("");
+    setAttempts(0);
+    setIsGameOver(false);
+    setGuessHistory([]);
+
     return () => {
-      handleDifficultyState(difficulty);
-      handleWord(difficultyState);
       setGuessedWord("");
       setAttempts(0);
       setIsGameOver(false);
       setGuessHistory([]);
     };
+  }, []);
+
+  useEffect(() => {
+    handleDifficultyState(difficulty);
+    handleWord(difficultyState);
+    setGuessedWord("");
+    setAttempts(0);
+    setIsGameOver(false);
+    setGuessHistory([]);
   }, [location]);
 
   useEffect(() => {
@@ -70,6 +84,7 @@ function GamePage() {
   const letterEelements = (guessedWord, word) => {
     const letters = guessedWord.split("");
 
+    // TODO: refactor this
     const indices = [...word]
       .map((letter, index) => (letter === guessedWord[index] ? index : -1))
       .filter((i) => i !== -1);
@@ -127,6 +142,7 @@ function GamePage() {
 
   const handleSubmit = () => {
     // check if the input is valid
+    console.log("Submit the game...");
     if (
       isValidInput &&
       inputValue.length > 0 &&
@@ -148,6 +164,7 @@ function GamePage() {
 
   const handleReset = (difficultyState) => {
     //handleDifficultyState(difficultyState);
+    console.log("Reset the game...");
     handleWord(difficultyState);
     setAttempts(0);
     setInputValue("");
@@ -157,11 +174,17 @@ function GamePage() {
     setGuessHistory([]);
   };
 
+  // TODO: refactor this
   return (
     <>
       <Wrapper elevation={3}>
         <Box component="from">
-          <p>Please input your guessword:</p>
+          <p>
+            Please input your guessword:
+            {difficultyState === 0
+              ? " (6-length letters)"
+              : " (7-length letters)"}
+          </p>
           <div>
             <TextField
               required
